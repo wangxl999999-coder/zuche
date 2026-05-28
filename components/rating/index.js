@@ -37,18 +37,30 @@ Component({
   },
 
   observers: {
-    'value': function() {
+    'value, size': function() {
       this.initStars();
     }
   },
 
   methods: {
+    getSizeValue(size) {
+      const sizeMap = {
+        sm: '24rpx',
+        md: '32rpx',
+        lg: '48rpx',
+        xl: '64rpx'
+      };
+      return sizeMap[size] || size;
+    },
+
     initStars() {
       const stars = [];
+      const fontSize = this.getSizeValue(this.properties.size);
       for (let i = 1; i <= this.properties.max; i++) {
         stars.push({
           index: i,
-          active: i <= this.properties.value
+          active: i <= this.properties.value,
+          fontSize
         });
       }
       this.setData({ stars });

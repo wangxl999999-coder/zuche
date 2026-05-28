@@ -3,7 +3,7 @@
     wx:for="{{stars}}" 
     wx:key="index"
     class="star {{item.active ? 'active' : ''}}"
-    style="font-size: {{size}}; color: {{item.active ? color : voidColor}};"
+    style="font-size: {{item.fontSize}}; color: {{item.active ? color : voidColor}};"
     bindtap="selectStar"
     data-index="{{item.index}}"
   >

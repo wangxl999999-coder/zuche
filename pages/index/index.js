@@ -202,9 +202,8 @@ Page({
       id: car.id,
       latitude: car.latitude,
       longitude: car.longitude,
-      iconPath: '../../images/marker-car.png',
-      width: 60,
-      height: 60,
+      width: 30,
+      height: 30,
       callout: {
         content: `¥${car.price}/天\n${car.name}`,
         color: '#333',
