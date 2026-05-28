@@ -12,14 +12,14 @@
     <view class="section-title">选择订单 <text class="required">*</text></view>
     <view class="order-list">
       <view 
-        class="order-item {{selectedOrder?.id === item.id ? 'selected' : ''}}"
+        class="order-item {{selectedOrder && selectedOrder.id === item.id ? 'selected' : ''}}"
         wx:for="{{orders}}"
         wx:key="id"
         bindtap="selectOrder"
         data-id="{{item.id}}"
       >
         <view class="order-radio">
-          <view class="radio-inner" wx:if="{{selectedOrder?.id === item.id}}"></view>
+          <view class="radio-inner" wx:if="{{selectedOrder && selectedOrder.id === item.id}}"></view>
         </view>
         <image class="car-image" src="{{item.carImage}}"></image>
         <view class="order-info">

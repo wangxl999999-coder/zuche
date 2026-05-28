@@ -102,7 +102,7 @@ Page({
       const userInfo = {
         ...this.data.userInfo,
         nickName: this.data.nickname,
-        avatarUrl: this.data.tempAvatar || this.data.userInfo?.avatarUrl,
+        avatarUrl: this.data.tempAvatar || (this.data.userInfo && this.data.userInfo.avatarUrl),
         gender: this.data.gender,
         phone: this.data.phone,
         email: this.data.email,
