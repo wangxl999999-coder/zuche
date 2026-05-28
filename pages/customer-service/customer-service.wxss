@@ -1,0 +1,158 @@
+.page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 40rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding: 0 30rpx;
+}
+
+.contact-section {
+  background: #fff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  padding: 30rpx 0;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-item.phone {
+  background: linear-gradient(135deg, #e8f3ff 0%, #e8f7ef 100%);
+  margin: -30rpx -30rpx 30rpx;
+  padding: 30rpx;
+  border-radius: 16rpx 16rpx 0 0;
+}
+
+.contact-icon {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+}
+
+.contact-info {
+  flex: 1;
+}
+
+.contact-label {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 4rpx;
+}
+
+.contact-value {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.contact-action {
+  padding: 12rpx 24rpx;
+  background: #1989fa;
+  color: #fff;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+}
+
+.work-time {
+  padding: 0 30rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.quick-service {
+  margin-top: 20rpx;
+}
+
+.service-grid {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  margin: 0 20rpx;
+  border-radius: 16rpx;
+  padding: 10rpx;
+}
+
+.service-item {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.service-icon {
+  font-size: 48rpx;
+  margin-bottom: 12rpx;
+}
+
+.service-name {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.faq-section {
+  margin-top: 30rpx;
+}
+
+.faq-list {
+  background: #fff;
+  margin: 0 20rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.faq-item {
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+}
+
+.question-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+  padding-right: 20rpx;
+}
+
+.question-arrow {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 30rpx 30rpx;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.faq-item.expanded .faq-answer {
+  display: block;
+}
+
+.faq-item.expanded .question-arrow {
+  color: #1989fa;
+}

@@ -1,0 +1,192 @@
+<view class="page" wx:if="{{car}}">
+  <view class="car-info">
+    <image class="car-image" src="{{car.image}}" mode="aspectFill"></image>
+    <view class="car-detail">
+      <view class="car-name">{{car.name}}</view>
+      <view class="car-specs">{{car.transmission}} · {{car.seats}}座 · {{car.fuelType}}</view>
+      <view class="car-price">
+        <text class="price">{{car.price}}</text>
+        <text class="unit">/天</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">租期选择</view>
+    <view class="date-picker-row">
+      <view class="date-item">
+        <view class="date-label">取车</view>
+        <picker mode="date" value="{{pickupDate}}" bindchange="onPickupDateChange">
+          <view class="date-value">{{pickupDate}}</view>
+        </picker>
+        <picker mode="time" value="{{pickupTime}}" bindchange="onPickupTimeChange">
+          <view class="time-value">{{pickupTime}}</view>
+        </picker>
+      </view>
+      <view class="date-arrow">→</view>
+      <view class="date-item">
+        <view class="date-label">还车</view>
+        <picker mode="date" value="{{returnDate}}" bindchange="onReturnDateChange">
+          <view class="date-value">{{returnDate}}</view>
+        </picker>
+        <picker mode="time" value="{{returnTime}}" bindchange="onReturnTimeChange">
+          <view class="time-value">{{returnTime}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="rental-days">共 {{rentalDays}} 天</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">取还车方式</view>
+    <view class="method-tabs">
+      <view 
+        class="method-tab {{pickupMethod === 'self' ? 'active' : ''}}"
+        bindtap="togglePickupMethod"
+        data-method="self"
+      >
+        门店自取
+      </view>
+      <view 
+        class="method-tab {{pickupMethod === 'delivery' ? 'active' : ''}}"
+        bindtap="togglePickupMethod"
+        data-method="delivery"
+      >
+        送车上门
+      </view>
+    </view>
+
+    <view class="address-section" wx:if="{{pickupMethod === 'self'}}">
+      <view class="address-item">
+        <view class="address-label">取车门店</view>
+        <view class="address-value">{{pickupAddress}}</view>
+      </view>
+      <view class="address-item">
+        <view class="address-label">还车门店</view>
+        <view class="address-value">{{returnAddress}}</view>
+      </view>
+    </view>
+
+    <view class="address-section" wx:if="{{pickupMethod === 'delivery'}}">
+      <view class="address-input">
+        <view class="address-label">送车地址</view>
+        <input 
+          class="input" 
+          placeholder="请输入详细地址" 
+          value="{{deliveryAddress}}"
+          bindinput="onAddressInput"
+          data-type="deliveryAddress"
+        />
+      </view>
+      <view class="delivery-fee">送车服务费：¥50</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">附加服务</view>
+    <view class="service-list">
+      <view 
+        class="service-item {{item.selected ? 'selected' : ''}}"
+        wx:for="{{additionalServices}}"
+        wx:key="id"
+        bindtap="toggleService"
+        data-id="{{item.id}}"
+      >
+        <view class="service-checkbox">
+          <text wx:if="{{item.selected}}">✓</text>
+        </view>
+        <view class="service-info">
+          <view class="service-name">{{item.name}}</view>
+          <view class="service-desc">{{item.desc}}</view>
+        </view>
+        <view class="service-price">
+          <text class="price">{{item.price}}</text>
+          <text class="unit">{{item.unit}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">优惠券</view>
+    <view class="coupon-select" bindtap="toggleCouponPicker">
+      <view class="coupon-text">
+        <text wx:if="{{coupon}}">已选：{{coupon.name}}</text>
+        <text wx:else class="placeholder">选择优惠券</text>
+      </view>
+      <text class="coupon-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="price-summary" bindtap="toggleDetail">
+      <view class="summary-left">
+        <text class="summary-label">费用明细</text>
+        <text class="summary-arrow">{{showDetail ? '▲' : '▼'}}</text>
+      </view>
+      <view class="summary-right">
+        <text>合计：</text>
+        <text class="price">{{totalAmount}}</text>
+      </view>
+    </view>
+
+    <view class="price-detail" wx:if="{{showDetail}}">
+      <view class="detail-item">
+        <text class="detail-label">基础租金（{{rentalDays}}天）</text>
+        <text class="detail-value">¥{{basePrice}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">服务费</text>
+        <text class="detail-value">¥{{servicePrice}}</text>
+      </view>
+      <view class="detail-item" wx:if="{{couponDiscount > 0}}">
+        <text class="detail-label">优惠券减免</text>
+        <text class="detail-value discount">-¥{{couponDiscount}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">租车押金（还车后退还）</text>
+        <text class="detail-value">¥{{deposit}}</text>
+      </view>
+      <view class="detail-total">
+        <text class="total-label">需支付</text>
+        <text class="total-value">¥{{totalAmount}} + ¥{{deposit}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <view class="bar-price">
+      <text class="price-label">应付：</text>
+      <text class="price">{{totalAmount}}</text>
+      <text class="deposit-tip">（含押金¥{{deposit}}）</text>
+    </view>
+    <button class="submit-btn" bindtap="submitOrder">提交订单</button>
+  </view>
+
+  <view class="coupon-mask {{showCouponPicker ? 'show' : ''}}" bindtap="toggleCouponPicker"></view>
+  <view class="coupon-panel {{showCouponPicker ? 'show' : ''}}">
+    <view class="panel-header">
+      <text class="panel-title">选择优惠券</text>
+      <text class="panel-close" bindtap="toggleCouponPicker">✕</text>
+    </view>
+    <view class="coupon-list">
+      <view 
+        class="coupon-item {{item.status !== 1 ? 'disabled' : ''}} {{couponId === item.id ? 'selected' : ''}}"
+        wx:for="{{coupons}}"
+        wx:key="id"
+        bindtap="selectCoupon"
+        data-id="{{item.id}}"
+      >
+        <view class="coupon-info">
+          <view class="coupon-name">{{item.name}}</view>
+          <view class="coupon-condition">满{{item.minAmount}}元可用</view>
+        </view>
+        <view class="coupon-value">
+          <text wx:if="{{item.type === 'cash'}}">¥{{item.value}}</text>
+          <text wx:elif="{{item.type === 'discount'}}">{{item.value * 10}}折</text>
+          <text wx:else>免1天</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,36 @@
+<view class="car-card" bindtap="goDetail">
+  <view class="car-image">
+    <image src="{{car.image}}" mode="aspectFill"></image>
+    <view class="car-tags">
+      <text class="tag tag-success" wx:if="{{car.isNew}}">新车</text>
+      <text class="tag tag-primary" wx:if="{{car.provider === 'self'}}">自营</text>
+      <text class="tag tag-warning" wx:else>加盟</text>
+    </view>
+    <view class="distance" wx:if="{{showDistance && car.distance}}">
+      距您{{car.distance}}km
+    </view>
+  </view>
+  <view class="car-info">
+    <view class="car-name">{{car.name}}</view>
+    <view class="car-specs">
+      <text>{{car.transmission}}</text>
+      <text class="dot">·</text>
+      <text>{{car.seats}}座</text>
+      <text class="dot">·</text>
+      <text>{{car.fuelType}}</text>
+    </view>
+    <view class="car-features">
+      <text class="feature" wx:for="{{car.features}}" wx:key="index">{{item}}</text>
+    </view>
+    <view class="car-bottom">
+      <view class="car-price">
+        <text class="price">{{car.price}}</text>
+        <text class="unit">/天</text>
+      </view>
+      <view class="car-rating">
+        <text class="rating-score">{{car.rating}}</text>
+        <text class="rating-count">({{car.reviewCount}}条评价)</text>
+      </view>
+    </view>
+  </view>
+</view>

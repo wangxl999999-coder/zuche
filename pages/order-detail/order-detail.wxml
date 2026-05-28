@@ -1,0 +1,167 @@
+<view class="page" wx:if="{{order}}">
+  <view class="status-header" style="background: linear-gradient(135deg, {{statusInfo.color}} 0%, #07c160 100%);">
+    <view class="status-label">{{statusInfo.label}}</view>
+    <view class="status-tip" wx:if="{{order.status === 1}}">请在预订时间内到门店取车</view>
+    <view class="status-tip" wx:if="{{order.status === 4}}">祝您用车愉快</view>
+    <view class="status-tip" wx:if="{{order.status === 8}}">订单已完成，快去评价吧</view>
+  </view>
+
+  <view class="progress-section">
+    <view class="progress-steps">
+      <view 
+        class="step-item {{index <= currentStep ? 'active' : ''}}"
+        wx:for="{{statusInfo.steps}}"
+        wx:key="index"
+        wx:if="{{item}}"
+      >
+        <view class="step-dot"></view>
+        <view class="step-text">{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="car-section">
+    <image class="car-image" src="{{order.carImage}}" mode="aspectFill"></image>
+    <view class="car-info">
+      <view class="car-name">{{order.carName}}</view>
+      <view class="car-specs">{{order.transmission}} · {{order.seats}}座 · {{order.fuelType}}</view>
+      <view class="car-price">
+        <text class="price">{{order.totalAmount}}</text>
+        <text class="unit">（共{{order.rentalDays}}天）</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="info-section">
+    <view class="section-title">租期信息</view>
+    <view class="info-row">
+      <text class="info-label">取车</text>
+      <text class="info-value">{{order.pickupDate}} {{order.pickupTime}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">还车</text>
+      <text class="info-value">{{order.returnDate}} {{order.returnTime}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">取车门店</text>
+      <text class="info-value">{{order.pickupAddress}}</text>
+    </view>
+    <view class="info-row" wx:if="{{order.deliveryAddress}}">
+      <text class="info-label">送车地址</text>
+      <text class="info-value">{{order.deliveryAddress}}</text>
+    </view>
+  </view>
+
+  <view class="info-section" wx:if="{{order.services && order.services.length > 0}}">
+    <view class="section-title">附加服务</view>
+    <view class="service-item" wx:for="{{order.services}}" wx:key="id">
+      <text class="service-name">{{item.name}}</text>
+      <text class="service-price">¥{{item.price}}{{item.unit}}</text>
+    </view>
+  </view>
+
+  <view class="info-section">
+    <view class="section-title">订单信息</view>
+    <view class="info-row">
+      <text class="info-label">订单编号</text>
+      <text class="info-value">{{order.orderNo}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">下单时间</text>
+      <text class="info-value">{{order.createTime}}</text>
+    </view>
+    <view class="info-row" wx:if="{{order.payTime}}">
+      <text class="info-label">支付时间</text>
+      <text class="info-value">{{order.payTime}}</text>
+    </view>
+  </view>
+
+  <view class="info-section" wx:if="{{order.status === 4}}">
+    <view class="section-title">车辆控制</view>
+    <view class="control-section">
+      <view class="password-area" bindtap="togglePassword">
+        <text class="password-label">开门密码</text>
+        <text class="password-value">{{showPassword ? doorPassword : '******'}}</text>
+        <text class="toggle-icon">{{showPassword ? '👁️' : '👁️‍🗨️'}}</text>
+      </view>
+      <button class="control-btn" bindtap="openDoor">一键开门</button>
+    </view>
+  </view>
+
+  <view class="info-section">
+    <view class="section-title">费用明细</view>
+    <view class="fee-row">
+      <text class="fee-label">基础租金</text>
+      <text class="fee-value">¥{{order.basePrice}}</text>
+    </view>
+    <view class="fee-row" wx:if="{{order.servicePrice > 0}}">
+      <text class="fee-label">服务费</text>
+      <text class="fee-value">¥{{order.servicePrice}}</text>
+    </view>
+    <view class="fee-row" wx:if="{{order.couponDiscount > 0}}">
+      <text class="fee-label">优惠券减免</text>
+      <text class="fee-value discount">-¥{{order.couponDiscount}}</text>
+    </view>
+    <view class="fee-row total">
+      <text class="fee-label">实付金额</text>
+      <text class="fee-value">¥{{order.totalAmount}}</text>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <view class="bar-actions">
+      <button class="action-btn" bindtap="contactService">联系客服</button>
+    </view>
+    <view class="bar-buttons">
+      <button 
+        class="btn btn-outline" 
+        wx:if="{{order.status === 0}}"
+        bindtap="cancelOrder"
+      >
+        取消订单
+      </button>
+      <button 
+        class="btn btn-primary" 
+        wx:if="{{order.status === 0}}"
+        bindtap="payOrder"
+      >
+        去支付
+      </button>
+      <button 
+        class="btn btn-outline" 
+        wx:if="{{order.status === 1}}"
+        bindtap="goSignContract"
+      >
+        签署合同
+      </button>
+      <button 
+        class="btn btn-primary" 
+        wx:if="{{order.status === 1}}"
+        bindtap="goInspection"
+      >
+        验车取车
+      </button>
+      <button 
+        class="btn btn-primary" 
+        wx:if="{{order.status === 4}}"
+        bindtap="goReturnInspection"
+      >
+        还车
+      </button>
+      <button 
+        class="btn btn-primary" 
+        wx:if="{{order.status === 8}}"
+        bindtap="goReview"
+      >
+        去评价
+      </button>
+      <button 
+        class="btn btn-primary" 
+        wx:if="{{order.status === 9 || order.status === 10}}"
+        bindtap="goHome"
+      >
+        再租一次
+      </button>
+    </view>
+  </view>
+</view>

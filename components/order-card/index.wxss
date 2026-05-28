@@ -1,0 +1,125 @@
+.order-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.order-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+  margin-bottom: 20rpx;
+}
+
+.order-no {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.order-status {
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.order-body {
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.car-image {
+  width: 200rpx;
+  height: 150rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.car-info {
+  flex: 1;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.car-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.car-specs {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.rental-time,
+.rental-address {
+  font-size: 24rpx;
+  color: #666;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.order-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.total-amount {
+  display: flex;
+  align-items: baseline;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.total-amount .price {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ee0a24;
+  margin-left: 8rpx;
+}
+
+.total-amount .price::before {
+  content: '¥';
+  font-size: 24rpx;
+}
+
+.order-actions {
+  display: flex;
+}
+
+.btn-small {
+  height: 60rpx;
+  padding: 0 30rpx;
+  font-size: 26rpx;
+  margin-left: 16rpx;
+}
+
+.btn-outline {
+  background: #fff;
+  color: #1989fa;
+  border: 2rpx solid #1989fa;
+}
+
+.btn-outline::after {
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #1989fa 0%, #07c160 100%);
+  color: #fff;
+  border: none;
+}
+
+.btn-primary::after {
+  border: none;
+}

@@ -1,0 +1,195 @@
+.page {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.header {
+  background: linear-gradient(135deg, #1989fa 0%, #07c160 100%);
+  padding: 60rpx 30rpx 40rpx;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.avatar-placeholder {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  color: #fff;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.user-info {
+  flex: 1;
+  margin-left: 24rpx;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 12rpx;
+}
+
+.user-tags {
+  display: flex;
+}
+
+.tag {
+  padding: 4rpx 16rpx;
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  margin-right: 12rpx;
+}
+
+.tag.active {
+  background: rgba(255, 255, 255, 0.9);
+  color: #1989fa;
+}
+
+.arrow {
+  font-size: 40rpx;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+}
+
+.login-text {
+  margin-left: 24rpx;
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: 500;
+}
+
+.quick-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40rpx;
+  padding-top: 30rpx;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.2);
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.action-icon {
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+
+.action-text {
+  font-size: 24rpx;
+  color: #fff;
+}
+
+.action-count {
+  position: absolute;
+  top: -8rpx;
+  right: -20rpx;
+  min-width: 32rpx;
+  height: 32rpx;
+  padding: 0 8rpx;
+  background: #ee0a24;
+  color: #fff;
+  border-radius: 16rpx;
+  font-size: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-container {
+  padding: 20rpx;
+}
+
+.menu-group {
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+
+.group-title {
+  padding: 20rpx 30rpx 10rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.menu-list {
+  padding: 0 30rpx;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+.menu-name {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.menu-arrow {
+  font-size: 32rpx;
+  color: #ccc;
+}
+
+.logout-section {
+  padding: 0 20rpx 40rpx;
+}
+
+.logout-btn {
+  width: 100%;
+  height: 88rpx;
+  background: #fff;
+  color: #ee0a24;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  border: none;
+}
+
+.logout-btn::after {
+  border: none;
+}
+
+.app-info {
+  text-align: center;
+  padding: 20rpx;
+  font-size: 24rpx;
+  color: #ccc;
+}

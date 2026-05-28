@@ -1,0 +1,15 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+}
+
+.star {
+  margin-right: 4rpx;
+  line-height: 1;
+}
+
+.rating-value {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 8rpx;
+}

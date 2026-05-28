@@ -1,0 +1,245 @@
+<view class="page" wx:if="{{car}}">
+  <swiper class="image-swiper" indicator-dots autoplay circular bindchange="onImageChange">
+    <swiper-item wx:for="{{car.images}}" wx:key="index" bindtap="previewImage" data-index="{{index}}">
+      <image src="{{item}}" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+  <view class="image-counter">{{currentImageIndex + 1}}/{{car.images.length}}</view>
+
+  <view class="car-info-section">
+    <view class="car-header">
+      <view class="car-name">{{car.name}}</view>
+      <view class="car-tags">
+        <text class="tag tag-success" wx:if="{{car.isNew}}">新车</text>
+        <text class="tag tag-primary">{{car.providerName}}</text>
+        <text class="tag tag-warning">{{car.typeName}}</text>
+      </view>
+    </view>
+    <view class="car-specs">
+      <text>{{car.transmission}}</text>
+      <text class="dot">·</text>
+      <text>{{car.seats}}座</text>
+      <text class="dot">·</text>
+      <text>{{car.fuelType}}</text>
+      <text class="dot">·</text>
+      <text>{{car.displacement}}</text>
+    </view>
+    <view class="car-features">
+      <text class="feature" wx:for="{{car.features}}" wx:key="index">{{item}}</text>
+    </view>
+    <view class="car-price-row">
+      <view class="car-price">
+        <text class="price">{{car.price}}</text>
+        <text class="unit">/天</text>
+      </view>
+      <view class="car-rating">
+        <rating value="{{car.rating}}" size="28rpx"></rating>
+        <text class="rating-count">{{car.reviewCount}}条评价</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="location-section" bindtap="goLocation">
+    <view class="location-icon">📍</view>
+    <view class="location-info">
+      <view class="location-address">{{car.address}}</view>
+      <view class="location-hint">点击查看地图</view>
+    </view>
+    <view class="location-arrow">›</view>
+  </view>
+
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'config' ? 'active' : ''}}" bindtap="switchTab" data-tab="config">参数配置</view>
+    <view class="tab-item {{activeTab === 'review' ? 'active' : ''}}" bindtap="switchTab" data-tab="review">用户评价</view>
+    <view class="tab-item {{activeTab === 'rule' ? 'active' : ''}}" bindtap="switchTab" data-tab="rule">租车须知</view>
+  </view>
+
+  <view class="tab-content" wx:if="{{activeTab === 'config'}}">
+    <view class="config-section">
+      <view class="config-title">基本参数</view>
+      <view class="config-grid">
+        <view class="config-item">
+          <text class="config-label">车身类型</text>
+          <text class="config-value">{{car.config.body}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">发动机</text>
+          <text class="config-value">{{car.config.engine}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">最大功率</text>
+          <text class="config-value">{{car.config.power}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">最大扭矩</text>
+          <text class="config-value">{{car.config.torque}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">变速箱</text>
+          <text class="config-value">{{car.config.transmission}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">驱动方式</text>
+          <text class="config-value">{{car.config.drive}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">燃油类型</text>
+          <text class="config-value">{{car.config.fuel}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">综合油耗</text>
+          <text class="config-value">{{car.config.fuelConsumption}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">座位数</text>
+          <text class="config-value">{{car.config.seats}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">车门数</text>
+          <text class="config-value">{{car.config.doors}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="config-section">
+      <view class="config-title">安全配置</view>
+      <view class="config-grid">
+        <view class="config-item">
+          <text class="config-label">安全气囊</text>
+          <text class="config-value">{{car.config.airbag}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">ABS防抱死</text>
+          <text class="config-value">{{car.config.abs}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">ESP车身稳定</text>
+          <text class="config-value">{{car.config.esp}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">倒车雷达</text>
+          <text class="config-value">{{car.config.parkingRadar}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">倒车影像</text>
+          <text class="config-value">{{car.config.reverseCamera}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="config-section">
+      <view class="config-title">舒适配置</view>
+      <view class="config-grid">
+        <view class="config-item">
+          <text class="config-label">天窗</text>
+          <text class="config-value">{{car.config.sunroof}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">巡航系统</text>
+          <text class="config-value">{{car.config.cruise}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">空调</text>
+          <text class="config-value">{{car.config.airConditioning}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">蓝牙</text>
+          <text class="config-value">{{car.config.bluetooth}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">GPS导航</text>
+          <text class="config-value">{{car.config.gps}}</text>
+        </view>
+        <view class="config-item">
+          <text class="config-label">座椅材质</text>
+          <text class="config-value">{{car.config.leatherSeats}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tab-content" wx:if="{{activeTab === 'review'}}">
+    <view class="review-summary">
+      <view class="summary-score">{{car.rating}}</view>
+      <view class="summary-info">
+        <rating value="{{car.rating}}" size="32rpx"></rating>
+        <view class="summary-count">{{car.reviewCount}}条评价</view>
+      </view>
+    </view>
+    <view class="review-list">
+      <view class="review-item" wx:for="{{reviews}}" wx:key="id">
+        <view class="review-header">
+          <view class="review-user">
+            <view class="user-avatar">{{item.userName.charAt(0)}}</view>
+            <view class="user-info">
+              <view class="user-name">{{item.userName}}</view>
+              <rating value="{{item.rating}}" size="24rpx"></rating>
+            </view>
+          </view>
+          <view class="review-time">{{item.createTime}}</view>
+        </view>
+        <view class="review-content">{{item.content}}</view>
+        <view class="review-tags" wx:if="{{item.tags.length > 0}}">
+          <text class="review-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tab-content" wx:if="{{activeTab === 'rule'}}">
+    <view class="rule-section">
+      <view class="rule-title">租车须知</view>
+      <view class="rule-list">
+        <view class="rule-item" wx:for="{{rentalRules}}" wx:key="index">
+          <text class="rule-index">{{index + 1}}.</text>
+          <text class="rule-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="fee-section">
+      <view class="fee-title">费用说明</view>
+      <view class="fee-list">
+        <view class="fee-item">
+          <text class="fee-label">租车押金</text>
+          <text class="fee-value">¥{{car.deposit}}</text>
+        </view>
+        <view class="fee-item">
+          <text class="fee-label">日里程限制</text>
+          <text class="fee-value">{{car.dailyLimit}}公里/天</text>
+        </view>
+        <view class="fee-item">
+          <text class="fee-label">超里程费用</text>
+          <text class="fee-value">¥{{car.overFee}}/公里</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <view class="bar-left">
+      <view class="bar-item" bindtap="toggleShare">
+        <text class="bar-icon">📤</text>
+        <text class="bar-text">分享</text>
+      </view>
+      <view class="bar-item" bindtap="goLocation">
+        <text class="bar-icon">📍</text>
+        <text class="bar-text">导航</text>
+      </view>
+    </view>
+    <view class="bar-right">
+      <view class="bar-price">
+        <text class="price">{{car.price}}</text>
+        <text class="unit">/天</text>
+      </view>
+      <button class="book-btn" bindtap="goBooking">立即预订</button>
+    </view>
+  </view>
+
+  <view class="share-mask {{showShare ? 'show' : ''}}" bindtap="closeShare"></view>
+  <view class="share-panel {{showShare ? 'show' : ''}}">
+    <view class="share-title">分享给好友</view>
+    <button class="share-btn" open-type="share">
+      <text class="share-icon">💬</text>
+      <text>微信好友</text>
+    </button>
+    <view class="cancel-btn" bindtap="closeShare">取消</view>
+  </view>
+</view>

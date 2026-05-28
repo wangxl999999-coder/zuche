@@ -1,0 +1,138 @@
+<view class="page">
+  <view class="tip-card" wx:if="{{verifyStatus !== 2}}">
+    <view class="tip-icon">⚠️</view>
+    <view class="tip-text">
+      <view class="tip-title">驾驶证认证须知</view>
+      <view class="tip-desc">请上传您的真实驾驶证照片，驾龄需满1年以上。认证通过后方可租车。</view>
+    </view>
+  </view>
+
+  <view class="status-card" wx:if="{{verifyStatus > 0}}">
+    <view class="status-info">
+      <view class="status-label">认证状态：</view>
+      <view class="status-value {{verifyStatus === 2 ? 'success' : verifyStatus === 3 ? 'danger' : 'warning'}}">
+        {{verifyStatus === 1 ? '审核中' : verifyStatus === 2 ? '已通过' : '已拒绝'}}
+      </view>
+    </view>
+    <view class="status-time" wx:if="{{verifyStatus === 1}}">预计1-3个工作日完成审核</view>
+  </view>
+
+  <view class="form-card" wx:if="{{verifyStatus !== 1 && verifyStatus !== 2}}">
+    <view class="form-item">
+      <view class="form-label">驾驶证号</view>
+      <input 
+        class="form-input" 
+        placeholder="请输入驾驶证号" 
+        value="{{licenseNumber}}"
+        bindinput="onLicenseNumberInput"
+        maxlength="18"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">准驾车型</view>
+      <view class="form-picker" bindtap="showTypePicker">
+        <text class="{{licenseType ? '' : 'placeholder'}}">{{licenseType || '请选择准驾车型'}}</text>
+        <text class="picker-arrow">›</text>
+      </view>
+      <picker-view-column wx:if="{{false}}"></picker-view-column>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">初次领证日期</view>
+      <picker mode="date" value="{{firstIssueDate}}" bindchange="onFirstIssueDateChange">
+        <view class="form-picker">
+          <text class="{{firstIssueDate ? '' : 'placeholder'}}">{{firstIssueDate || '请选择日期'}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">有效期起始日期</view>
+      <picker mode="date" value="{{validFrom}}" bindchange="onValidFromChange">
+        <view class="form-picker">
+          <text class="{{validFrom ? '' : 'placeholder'}}">{{validFrom || '请选择日期'}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">有效期截止日期</view>
+      <picker mode="date" value="{{validTo}}" bindchange="onValidToChange">
+        <view class="form-picker">
+          <text class="{{validTo ? '' : 'placeholder'}}">{{validTo || '请选择日期'}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="upload-section">
+      <view class="form-label">驾驶证正本</view>
+      <view class="upload-hint">请上传驾驶证正本（有照片一面）</view>
+      <view class="upload-area" bindtap="uploadFront" wx:if="{{!licenseFront}}">
+        <view class="upload-icon">📷</view>
+        <view class="upload-text">点击上传</view>
+      </view>
+      <view class="image-preview" bindtap="previewImage" data-url="{{licenseFront}}" wx:else>
+        <image src="{{licenseFront}}" mode="aspectFill"></image>
+        <view class="image-mask">
+          <text class="reupload-text">点击重新上传</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="upload-section">
+      <view class="form-label">驾驶证副页</view>
+      <view class="upload-hint">请上传驾驶证副页</view>
+      <view class="upload-area" bindtap="uploadBack" wx:if="{{!licenseBack}}">
+        <view class="upload-icon">📷</view>
+        <view class="upload-text">点击上传</view>
+      </view>
+      <view class="image-preview" bindtap="previewImage" data-url="{{licenseBack}}" wx:else>
+        <image src="{{licenseBack}}" mode="aspectFill"></image>
+        <view class="image-mask">
+          <text class="reupload-text">点击重新上传</text>
+        </view>
+      </view>
+    </view>
+
+    <button class="submit-btn" bindtap="submit" disabled="{{isUploading}}">
+      {{isUploading ? '上传中...' : '提交认证'}}
+    </button>
+  </view>
+
+  <view class="success-card" wx:if="{{verifyStatus === 2}}">
+    <view class="success-icon">✅</view>
+    <view class="success-title">驾驶证认证已通过</view>
+    <view class="success-desc">您的驾驶证信息已通过审核，可以开始租车了</view>
+    <view class="info-item">
+      <text class="info-label">准驾车型：</text>
+      <text class="info-value">{{licenseType}}</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">有效期至：</text>
+      <text class="info-value">{{validTo}}</text>
+    </view>
+  </view>
+
+  <view class="type-picker-mask {{showTypePicker ? 'show' : ''}}" bindtap="onTypeCancel"></view>
+  <view class="type-picker {{showTypePicker ? 'show' : ''}}">
+    <view class="picker-header">
+      <text class="picker-cancel" bindtap="onTypeCancel">取消</text>
+      <text class="picker-title">选择准驾车型</text>
+      <text class="picker-confirm" bindtap="onTypeConfirm" data-value="{{licenseTypes.indexOf(licenseType)}}">确定</text>
+    </view>
+    <picker-view class="picker-view" value="{{[licenseTypes.indexOf(licenseType)]}}" bindchange="onTypeChange">
+      <picker-view-column>
+        <view wx:for="{{licenseTypes}}" wx:key="*this" class="picker-item">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+
+  <view class="privacy-tip">
+    <text>🔒</text>
+    <text>您的驾驶证信息将受到严格保护，仅用于驾驶资格验证</text>
+  </view>
+</view>

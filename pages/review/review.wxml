@@ -1,0 +1,75 @@
+<view class="page">
+  <view class="car-info" wx:if="{{order}}">
+    <image class="car-image" src="{{order.carImage}}"></image>
+    <view class="car-detail">
+      <view class="car-name">{{order.carName}}</view>
+      <view class="order-time">{{order.startDate}} - {{order.endDate}}</view>
+    </view>
+  </view>
+
+  <view class="rating-section">
+    <view class="section-title">车辆评分</view>
+    <rating value="{{carRating}}" bind:change="onCarRatingChange" size="lg"></rating>
+  </view>
+
+  <view class="rating-section">
+    <view class="section-title">服务评分</view>
+    <rating value="{{serviceRating}}" bind:change="onServiceRatingChange" size="lg"></rating>
+  </view>
+
+  <view class="tags-section">
+    <view class="section-title">评价标签</view>
+    <view class="tags-list">
+      <view 
+        class="tag-item {{item.selected ? 'selected' : ''}}"
+        wx:for="{{tags}}"
+        wx:key="id"
+        bindtap="toggleTag"
+        data-index="{{index}}"
+      >
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <view class="content-section">
+    <view class="section-title">评价内容</view>
+    <textarea 
+      class="content-input" 
+      placeholder="分享您的用车体验，帮助更多用户做出选择..."
+      value="{{content}}"
+      bindinput="onContentInput"
+      maxlength="500"
+      show-confirm-bar="{{false}}"
+    ></textarea>
+    <view class="content-count">{{content.length}}/500</view>
+  </view>
+
+  <view class="images-section">
+    <view class="section-title">上传图片（选填）</view>
+    <view class="images-list">
+      <view 
+        class="image-item"
+        wx:for="{{images}}"
+        wx:key="index"
+      >
+        <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"></image>
+        <view class="delete-btn" catchtap="deleteImage" data-index="{{index}}">✕</view>
+      </view>
+      <view class="image-upload" bindtap="uploadImage" wx:if="{{images.length < 9}}">
+        <text class="upload-icon">📷</text>
+        <text class="upload-text">{{images.length}}/9</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <button 
+      class="submit-btn {{submitting ? 'disabled' : ''}}" 
+      bindtap="submitReview"
+      disabled="{{submitting}}"
+    >
+      {{submitting ? '提交中...' : '提交评价'}}
+    </button>
+  </view>
+</view>

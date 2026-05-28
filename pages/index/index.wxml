@@ -1,0 +1,78 @@
+<view class="page">
+  <view class="search-bar">
+    <view class="search-input" bindtap="goSearch">
+      <text class="iconfont icon-search"></text>
+      <text class="placeholder">搜索车型、门店</text>
+    </view>
+    <view class="promotion-badge" bindtap="goPromotion">
+      <text>🔥 秒杀</text>
+    </view>
+  </view>
+
+  <view class="quick-entrance">
+    <view class="entrance-item" bindtap="goPromotion">
+      <view class="entrance-icon">🔥</view>
+      <text class="entrance-text">限时秒杀</text>
+    </view>
+    <view class="entrance-item" bindtap="goInvite">
+      <view class="entrance-icon">🎁</view>
+      <text class="entrance-text">邀请有礼</text>
+    </view>
+    <view class="entrance-item" bindtap="goPromotion">
+      <view class="entrance-icon">🆓</view>
+      <text class="entrance-text">新人免租</text>
+    </view>
+    <view class="entrance-item">
+      <view class="entrance-icon">🏷️</view>
+      <text class="entrance-text">优惠券</text>
+    </view>
+  </view>
+
+  <view class="map-container" wx:if="{{!showList}}">
+    <map
+      id="carMap"
+      class="map"
+      longitude="{{location.longitude}}"
+      latitude="{{location.latitude}}"
+      scale="14"
+      markers="{{markers}}"
+      show-location
+      bindmarkertap="onMarkerTap"
+      bindcallouttap="onCalloutTap"
+    ></map>
+  </view>
+
+  <view class="view-toggle" bindtap="toggleView">
+    <text class="iconfont">{{showList ? '📍' : '📋'}}</text>
+    <text>{{showList ? '地图模式' : '列表模式'}}</text>
+  </view>
+
+  <filter-bar filters="{{filters}}" bind:filter="onFilter"></filter-bar>
+
+  <view class="car-list" wx:if="{{showList}}">
+    <view wx:if="{{loading}}" class="loading">加载中...</view>
+    <block wx:elif="{{filteredCars.length > 0}}">
+      <car-card wx:for="{{filteredCars}}" wx:key="id" car="{{item}}"></car-card>
+    </block>
+    <empty 
+      wx:else 
+      text="暂无符合条件的车辆"
+      show-button="{{true}}"
+      button-text="重置筛选"
+      bind:buttontap="onFilter"
+    ></empty>
+  </view>
+
+  <view class="selected-car" wx:if="{{!showList && selectedCar}}" bindtap="onCalloutTap" data-marker-id="{{selectedCar.id}}">
+    <image class="car-image" src="{{selectedCar.image}}" mode="aspectFill"></image>
+    <view class="car-info">
+      <view class="car-name">{{selectedCar.name}}</view>
+      <view class="car-specs">{{selectedCar.transmission}} · {{selectedCar.seats}}座 · {{selectedCar.fuelType}}</view>
+      <view class="car-price">
+        <text class="price">{{selectedCar.price}}</text>
+        <text class="unit">/天</text>
+      </view>
+    </view>
+    <view class="book-btn">立即预订</view>
+  </view>
+</view>

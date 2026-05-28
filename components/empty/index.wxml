@@ -1,0 +1,10 @@
+<view class="empty">
+  <image wx:if="{{image}}" class="empty-image" src="{{image}}" mode="aspectFit"></image>
+  <view wx:else class="empty-icon">
+    <text>📭</text>
+  </view>
+  <view class="empty-text">{{text}}</view>
+  <view wx:if="{{showButton}}" class="empty-btn" bindtap="onButtonTap">
+    {{buttonText}}
+  </view>
+</view>

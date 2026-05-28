@@ -1,0 +1,142 @@
+.page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 140rpx;
+}
+
+.avatar-section {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.avatar-label {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.avatar-wrapper {
+  position: relative;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.avatar-placeholder {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  color: #999;
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40rpx;
+  height: 40rpx;
+  background: #1989fa;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+  border: 4rpx solid #fff;
+}
+
+.form-section {
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.section-header {
+  padding: 30rpx 30rpx 0;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.section-desc {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+  height: 100rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  width: 180rpx;
+  font-size: 28rpx;
+  color: #333;
+  flex-shrink: 0;
+}
+
+.form-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+  text-align: right;
+}
+
+.picker-value {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.picker-arrow {
+  margin-left: 10rpx;
+  color: #ccc;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.save-btn {
+  width: 100%;
+  height: 88rpx;
+  background: linear-gradient(135deg, #1989fa 0%, #07c160 100%);
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  border: none;
+}
+
+.save-btn::after {
+  border: none;
+}

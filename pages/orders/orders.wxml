@@ -1,0 +1,27 @@
+<view class="page">
+  <view class="tabs">
+    <view 
+      class="tab-item {{activeTab === index ? 'active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="value"
+      bindtap="switchTab"
+      data-index="{{index}}"
+    >
+      {{item.label}}
+    </view>
+  </view>
+
+  <view class="order-list">
+    <view wx:if="{{loading}}" class="loading">加载中...</view>
+    <block wx:elif="{{filteredOrders.length > 0}}">
+      <order-card wx:for="{{filteredOrders}}" wx:key="id" order="{{item}}"></order-card>
+    </block>
+    <empty 
+      wx:else 
+      text="暂无订单"
+      show-button="{{true}}"
+      button-text="去租车"
+      bind:buttontap="goHome"
+    ></empty>
+  </view>
+</view>

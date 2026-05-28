@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/car-detail/car-detail",
+    "pages/booking/booking",
+    "pages/order-detail/order-detail",
+    "pages/orders/orders",
+    "pages/profile/profile",
+    "pages/login/login",
+    "pages/auth/auth",
+    "pages/driver-license/driver-license",
+    "pages/coupons/coupons",
+    "pages/customer-service/customer-service",
+    "pages/review/review",
+    "pages/repair/repair",
+    "pages/invite/invite",
+    "pages/flash-sale/flash-sale",
+    "pages/profile-edit/profile-edit",
+    "pages/contract/contract",
+    "pages/inspection/inspection"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1989fa",
+    "navigationBarTitleText": "租车出行",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#1989fa",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/orders/orders",
+        "text": "订单",
+        "iconPath": "images/tab-order.png",
+        "selectedIconPath": "images/tab-order-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tab-profile.png",
+        "selectedIconPath": "images/tab-profile-active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于查找附近可用车辆"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

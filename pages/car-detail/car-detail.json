@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "车辆详情",
+  "usingComponents": {
+    "rating": "/components/rating/index"
+  }
+}

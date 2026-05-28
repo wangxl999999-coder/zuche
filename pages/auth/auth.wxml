@@ -1,0 +1,98 @@
+<view class="page">
+  <view class="tip-card" wx:if="{{authStatus !== 2}}">
+    <view class="tip-icon">⚠️</view>
+    <view class="tip-text">
+      <view class="tip-title">实名认证须知</view>
+      <view class="tip-desc">请如实填写您的真实身份信息，我们将严格保护您的隐私。认证通过后方可租车。</view>
+    </view>
+  </view>
+
+  <view class="status-card" wx:if="{{authStatus > 0}}">
+    <view class="status-info">
+      <view class="status-label">认证状态：</view>
+      <view class="status-value {{authStatus === 2 ? 'success' : authStatus === 3 ? 'danger' : 'warning'}}">
+        {{authStatus === 1 ? '审核中' : authStatus === 2 ? '已通过' : '已拒绝'}}
+      </view>
+    </view>
+    <view class="status-time" wx:if="{{authStatus === 1}}">预计1-3个工作日完成审核</view>
+  </view>
+
+  <view class="form-card" wx:if="{{authStatus !== 1 && authStatus !== 2}}">
+    <view class="form-item">
+      <view class="form-label">真实姓名</view>
+      <input 
+        class="form-input" 
+        placeholder="请输入真实姓名" 
+        value="{{name}}"
+        bindinput="onNameInput"
+        maxlength="10"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">身份证号</view>
+      <input 
+        class="form-input" 
+        placeholder="请输入18位身份证号" 
+        value="{{idCard}}"
+        bindinput="onIdCardInput"
+        maxlength="18"
+      />
+    </view>
+
+    <view class="upload-section">
+      <view class="form-label">身份证正面</view>
+      <view class="upload-hint">请上传身份证人像面照片</view>
+      <view class="upload-area" bindtap="uploadFront" wx:if="{{!idCardFront}}">
+        <view class="upload-icon">📷</view>
+        <view class="upload-text">点击上传</view>
+        <view class="upload-loading" wx:if="{{isUploading}}">上传中...</view>
+      </view>
+      <view class="image-preview" bindtap="previewImage" data-url="{{idCardFront}}" wx:else>
+        <image src="{{idCardFront}}" mode="aspectFill"></image>
+        <view class="image-mask">
+          <text class="reupload-text">点击重新上传</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="upload-section">
+      <view class="form-label">身份证反面</view>
+      <view class="upload-hint">请上传身份证国徽面照片</view>
+      <view class="upload-area" bindtap="uploadBack" wx:if="{{!idCardBack}}">
+        <view class="upload-icon">📷</view>
+        <view class="upload-text">点击上传</view>
+        <view class="upload-loading" wx:if="{{isUploading}}">上传中...</view>
+      </view>
+      <view class="image-preview" bindtap="previewImage" data-url="{{idCardBack}}" wx:else>
+        <image src="{{idCardBack}}" mode="aspectFill"></image>
+        <view class="image-mask">
+          <text class="reupload-text">点击重新上传</text>
+        </view>
+      </view>
+    </view>
+
+    <button class="submit-btn" bindtap="submit" disabled="{{isUploading}}">
+      {{isUploading ? '上传中...' : '提交认证'}}
+    </button>
+  </view>
+
+  <view class="success-card" wx:if="{{authStatus === 2}}">
+    <view class="success-icon">✅</view>
+    <view class="success-title">实名认证已通过</view>
+    <view class="success-desc">您的身份信息已通过审核，可以开始租车了</view>
+    <view class="info-item">
+      <text class="info-label">姓名：</text>
+      <text class="info-value">{{name}}</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">身份证号：</text>
+      <text class="info-value">{{idCard.substring(0, 6)}}********{{idCard.substring(14)}}</text>
+    </view>
+  </view>
+
+  <view class="privacy-tip">
+    <text>🔒</text>
+    <text>您的个人信息将受到严格保护，仅用于身份验证</text>
+  </view>
+</view>

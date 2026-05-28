@@ -1,0 +1,84 @@
+<view class="page">
+  <view class="header">
+    <view class="header-bg"></view>
+    <view class="countdown-section">
+      <view class="countdown-title">
+        <text class="fire-icon">🔥</text>
+        <text>限时秒杀</text>
+      </view>
+      <view class="countdown-timer">
+        <text class="timer-label">距结束</text>
+        <view class="timer-box">{{countdown.hours.toString().padStart(2, '0')}}</view>
+        <text class="timer-colon">:</text>
+        <view class="timer-box">{{countdown.minutes.toString().padStart(2, '0')}}</view>
+        <text class="timer-colon">:</text>
+        <view class="timer-box">{{countdown.seconds.toString().padStart(2, '0')}}</view>
+      </view>
+    </view>
+    <view class="share-btn" bindtap="shareCoupon">
+      <text>📤</text>
+      <text>分享</text>
+    </view>
+  </view>
+
+  <view class="rule-bar">
+    <text class="rule-icon">📋</text>
+    <text>每日10点开抢，数量有限，先到先得</text>
+  </view>
+
+  <view class="car-list">
+    <view 
+      class="car-item {{item.status === 3 ? 'sold-out' : ''}}"
+      wx:for="{{flashCars}}"
+      wx:key="id"
+      bindtap="goCarDetail"
+      data-id="{{item.id}}"
+      data-status="{{item.status}}"
+    >
+      <view class="car-image-wrapper">
+        <image class="car-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="discount-badge">{{item.discount}}</view>
+        <view class="status-badge status-{{item.status}}">
+          {{getStatusText(item.status)}}
+        </view>
+      </view>
+      
+      <view class="car-info">
+        <view class="car-name">{{item.name}}</view>
+        <view class="car-tags">
+          <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+        </view>
+        
+        <view class="price-row">
+          <view class="price-info">
+            <text class="sale-price">¥{{item.salePrice}}</text>
+            <text class="original-price">¥{{item.originalPrice}}</text>
+            <text class="price-unit">/天</text>
+          </view>
+          <view class="stock-info">
+            已抢{{item.sold}}辆
+          </view>
+        </view>
+
+        <view class="action-row">
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{item.sold / (item.sold + item.stock) * 100}}%"></view>
+          </view>
+          <button 
+            class="grab-btn {{item.status === 1 ? '' : 'disabled'}}"
+            catchtap="grabCar"
+            data-id="{{item.id}}"
+            data-stock="{{item.stock}}"
+            disabled="{{item.status !== 1}}"
+          >
+            {{item.status === 1 ? '立即抢购' : (item.status === 2 ? '提醒我' : '已抢光')}}
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="more-tip">
+    <text>更多秒杀车型敬请期待...</text>
+  </view>
+</view>

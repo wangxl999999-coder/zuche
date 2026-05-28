@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "租车出行",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "filter-bar": "/components/filter-bar/index",
+    "car-card": "/components/car-card/index",
+    "empty": "/components/empty/index"
+  }
+}

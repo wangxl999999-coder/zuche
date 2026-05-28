@@ -1,0 +1,62 @@
+<view class="page">
+  <view class="header" style="padding-top: {{statusBarHeight + 20}}px;">
+    <view class="back-btn" bindtap="goBack" wx:if="{{statusBarHeight}}">
+      <text>‹</text>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="logo">
+      <text>🚗</text>
+    </view>
+    <view class="title">欢迎使用租车出行</view>
+    <view class="subtitle">专业的汽车租赁服务平台</view>
+
+    <view class="login-section">
+      <view class="avatar-section" wx:if="{{!hasUserInfo}}">
+        <view class="avatar-placeholder">
+          <text>👤</text>
+        </view>
+        <button class="btn btn-outline" open-type="getUserProfile" bindgetuserprofile="onGetUserProfile">
+          授权用户信息
+        </button>
+      </view>
+
+      <view class="avatar-section" wx:else>
+        <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+        <view class="nickname">{{userInfo.nickName}}</view>
+      </view>
+
+      <view class="phone-login" wx:if="{{hasUserInfo}}">
+        <button 
+          class="btn btn-primary" 
+          open-type="getPhoneNumber" 
+          bindgetphonenumber="onGetPhoneNumber"
+        >
+          微信一键登录
+        </button>
+        <view class="login-tip">
+          <text>登录即表示同意</text>
+          <text class="link" bindtap="goAgreement">《用户协议》</text>
+          <text>和</text>
+          <text class="link" bindtap="goPrivacy">《隐私政策》</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="features">
+      <view class="feature-item">
+        <text class="feature-icon">✅</text>
+        <text class="feature-text">新用户首日免租</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">✅</text>
+        <text class="feature-text">免押金租车</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">✅</text>
+        <text class="feature-text">24小时道路救援</text>
+      </view>
+    </view>
+  </view>
+</view>

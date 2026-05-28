@@ -1,0 +1,308 @@
+.page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 40rpx;
+}
+
+.header {
+  position: relative;
+  padding: 40rpx 30rpx 100rpx;
+  overflow: hidden;
+}
+
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  z-index: 0;
+}
+
+.invite-banner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.banner-title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 8rpx;
+}
+
+.banner-subtitle {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.stats-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16rpx;
+  padding: 30rpx 0;
+  backdrop-filter: blur(10rpx);
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.stat-divider {
+  width: 1rpx;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.invite-code-section {
+  background: #fff;
+  margin: -50rpx 20rpx 20rpx;
+  padding: 30rpx;
+  border-radius: 16rpx;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.code-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f5f5f5;
+  padding: 20rpx 30rpx;
+  border-radius: 12rpx;
+}
+
+.invite-code {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #1989fa;
+  letter-spacing: 4rpx;
+}
+
+.copy-btn {
+  padding: 12rpx 30rpx;
+  background: #1989fa;
+  color: #fff;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  border: none;
+  line-height: 1.2;
+}
+
+.copy-btn::after {
+  border: none;
+}
+
+.share-section {
+  background: #fff;
+  margin: 0 20rpx 20rpx;
+  padding: 30rpx;
+  border-radius: 16rpx;
+}
+
+.share-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.share-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-icon {
+  width: 100rpx;
+  height: 100rpx;
+  background: #f5f5f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-bottom: 12rpx;
+}
+
+.share-text {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.reward-section {
+  background: #fff;
+  margin: 0 20rpx 20rpx;
+  padding: 30rpx;
+  border-radius: 16rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.more-link {
+  font-size: 24rpx;
+  color: #1989fa;
+}
+
+.reward-scroll {
+  white-space: nowrap;
+}
+
+.reward-list {
+  display: inline-flex;
+  gap: 20rpx;
+}
+
+.reward-item {
+  width: 200rpx;
+  padding: 24rpx;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee0a24 100%);
+  border-radius: 12rpx;
+  text-align: center;
+}
+
+.reward-item.disabled {
+  background: #ccc;
+  opacity: 0.7;
+}
+
+.reward-value {
+  display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 8rpx;
+}
+
+.reward-name {
+  display: block;
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 4rpx;
+}
+
+.reward-expire {
+  font-size: 20rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.records-section {
+  background: #fff;
+  margin: 0 20rpx 20rpx;
+  padding: 30rpx;
+  border-radius: 16rpx;
+}
+
+.records-list {
+  padding: 0;
+}
+
+.record-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.record-item:last-child {
+  border-bottom: none;
+}
+
+.record-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-right: 20rpx;
+}
+
+.record-info {
+  flex: 1;
+}
+
+.record-name {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 6rpx;
+}
+
+.record-time {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.record-reward {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #07c160;
+}
+
+.rules-section {
+  background: #fff;
+  margin: 0 20rpx;
+  padding: 30rpx;
+  border-radius: 16rpx;
+}
+
+.rules-list {
+  padding: 0;
+}
+
+.rule-item {
+  display: flex;
+  margin-bottom: 16rpx;
+}
+
+.rule-item:last-child {
+  margin-bottom: 0;
+}
+
+.rule-index {
+  font-size: 24rpx;
+  color: #999;
+  margin-right: 8rpx;
+  flex-shrink: 0;
+}
+
+.rule-text {
+  flex: 1;
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.6;
+}

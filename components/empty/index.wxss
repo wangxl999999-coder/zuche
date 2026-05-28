@@ -1,0 +1,30 @@
+.empty {
+  padding: 100rpx 0;
+  text-align: center;
+}
+
+.empty-image {
+  width: 240rpx;
+  height: 240rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+}
+
+.empty-btn {
+  display: inline-block;
+  padding: 20rpx 60rpx;
+  background: linear-gradient(135deg, #1989fa 0%, #07c160 100%);
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+}

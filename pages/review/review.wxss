@@ -1,0 +1,188 @@
+.page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 140rpx;
+}
+
+.car-info {
+  display: flex;
+  background: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.car-image {
+  width: 160rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.car-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.car-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.order-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.rating-section {
+  background: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.tags-section {
+  background: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.tag-item {
+  padding: 12rpx 24rpx;
+  background: #f5f5f5;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  color: #666;
+  border: 2rpx solid transparent;
+}
+
+.tag-item.selected {
+  background: #e8f3ff;
+  color: #1989fa;
+  border-color: #1989fa;
+}
+
+.content-section {
+  background: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.content-input {
+  width: 100%;
+  min-height: 200rpx;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+.content-count {
+  text-align: right;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+.images-section {
+  background: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.images-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.image-item {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.image-item image {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+}
+
+.delete-btn {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: #ee0a24;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+}
+
+.image-upload {
+  width: 160rpx;
+  height: 160rpx;
+  background: #f5f5f5;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx dashed #ddd;
+}
+
+.upload-icon {
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+
+.upload-text {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.submit-btn {
+  width: 100%;
+  height: 88rpx;
+  background: linear-gradient(135deg, #1989fa 0%, #07c160 100%);
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  border: none;
+}
+
+.submit-btn::after {
+  border: none;
+}
+
+.submit-btn.disabled {
+  background: #ccc;
+}
