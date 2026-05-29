@@ -15,16 +15,6 @@ export const login = () => {
   });
 };
 
-export const getUserProfile = () => {
-  return new Promise((resolve, reject) => {
-    wx.getUserProfile({
-      desc: '用于完善用户资料',
-      success: resolve,
-      fail: reject
-    });
-  });
-};
-
 export const getPhoneNumber = (e) => {
   return new Promise((resolve, reject) => {
     if (e.detail.code) {

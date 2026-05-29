@@ -1,12 +1,14 @@
 const app = getApp();
-import { login, getUserProfile, getPhoneNumber } from '../../utils/auth.js';
+import { login } from '../../utils/auth.js';
 import { showToast, showLoading, hideLoading } from '../../utils/util.js';
 
 Page({
   data: {
     statusBarHeight: 0,
     userInfo: null,
-    hasUserInfo: false
+    hasUserInfo: false,
+    tempAvatarUrl: '',
+    tempNickName: ''
   },
 
   onLoad() {
@@ -16,13 +18,37 @@ Page({
     });
   },
 
-  onGetUserProfile(e) {
-    if (e.detail.userInfo) {
-      this.setData({
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true
-      });
+  onChooseAvatar(e) {
+    const { avatarUrl } = e.detail;
+    this.setData({ tempAvatarUrl: avatarUrl });
+  },
+
+  onNicknameInput(e) {
+    this.setData({ tempNickName: e.detail.value });
+  },
+
+  onNicknameBlur(e) {
+    this.setData({ tempNickName: e.detail.value });
+  },
+
+  confirmUserInfo() {
+    const { tempAvatarUrl, tempNickName } = this.data;
+    if (!tempAvatarUrl) {
+      showToast('请先选择头像');
+      return;
     }
+    if (!tempNickName) {
+      showToast('请输入昵称');
+      return;
+    }
+
+    this.setData({
+      userInfo: {
+        avatarUrl: tempAvatarUrl,
+        nickName: tempNickName
+      },
+      hasUserInfo: true
+    });
   },
 
   async onGetPhoneNumber(e) {

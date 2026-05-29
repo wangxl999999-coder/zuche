@@ -14,11 +14,27 @@
 
     <view class="login-section">
       <view class="avatar-section" wx:if="{{!hasUserInfo}}">
-        <view class="avatar-placeholder">
-          <text>👤</text>
+        <button class="avatar-choose-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+          <image class="avatar" src="{{tempAvatarUrl || '/images/default-avatar.png'}}" wx:if="{{tempAvatarUrl}}"></image>
+          <view class="avatar-placeholder" wx:else>
+            <text>👤</text>
+          </view>
+          <view class="avatar-tip">点击选择头像</view>
+        </button>
+
+        <view class="nickname-input-wrap">
+          <input 
+            class="nickname-input" 
+            type="nickname" 
+            placeholder="请输入昵称" 
+            bindinput="onNicknameInput"
+            bindblur="onNicknameBlur"
+            value="{{tempNickName}}"
+          />
         </view>
-        <button class="btn btn-outline" open-type="getUserProfile" bindgetuserprofile="onGetUserProfile">
-          授权用户信息
+
+        <button class="btn btn-outline" bindtap="confirmUserInfo" disabled="{{!tempAvatarUrl || !tempNickName}}">
+          确认用户信息
         </button>
       </view>
 
