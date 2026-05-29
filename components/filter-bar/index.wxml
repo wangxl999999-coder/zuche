@@ -26,101 +26,103 @@
     <text class="reset-btn" bindtap="resetFilter">重置</text>
   </view>
 
-  <view class="filter-section">
-    <view class="section-title">车型</view>
-    <view class="filter-options">
-      <view 
-        wx:for="{{carTypes}}" 
-        wx:key="value"
-        class="option-item {{localFilters.carType === item.value ? 'active' : ''}}"
-        bindtap="selectFilter"
-        data-type="carType"
-        data-value="{{item.value}}"
-      >
-        {{item.label}}
+  <scroll-view class="panel-content" scroll-y="true">
+    <view class="filter-section">
+      <view class="section-title">车型</view>
+      <view class="filter-options">
+        <view 
+          wx:for="{{carTypes}}" 
+          wx:key="value"
+          class="option-item {{localFilters.carType === item.value ? 'active' : ''}}"
+          bindtap="selectFilter"
+          data-type="carType"
+          data-value="{{item.value}}"
+        >
+          {{item.label}}
+        </view>
       </view>
     </view>
-  </view>
 
-  <view class="filter-section">
-    <view class="section-title">燃油类型</view>
-    <view class="filter-options">
-      <view 
-        wx:for="{{fuelTypes}}" 
-        wx:key="value"
-        class="option-item {{localFilters.fuelType === item.value ? 'active' : ''}}"
-        bindtap="selectFilter"
-        data-type="fuelType"
-        data-value="{{item.value}}"
-      >
-        {{item.label}}
+    <view class="filter-section">
+      <view class="section-title">燃油类型</view>
+      <view class="filter-options">
+        <view 
+          wx:for="{{fuelTypes}}" 
+          wx:key="value"
+          class="option-item {{localFilters.fuelType === item.value ? 'active' : ''}}"
+          bindtap="selectFilter"
+          data-type="fuelType"
+          data-value="{{item.value}}"
+        >
+          {{item.label}}
+        </view>
       </view>
     </view>
-  </view>
 
-  <view class="filter-section">
-    <view class="section-title">变速箱</view>
-    <view class="filter-options">
-      <view 
-        wx:for="{{transmissionTypes}}" 
-        wx:key="value"
-        class="option-item {{localFilters.transmission === item.value ? 'active' : ''}}"
-        bindtap="selectFilter"
-        data-type="transmission"
-        data-value="{{item.value}}"
-      >
-        {{item.label}}
+    <view class="filter-section">
+      <view class="section-title">变速箱</view>
+      <view class="filter-options">
+        <view 
+          wx:for="{{transmissionTypes}}" 
+          wx:key="value"
+          class="option-item {{localFilters.transmission === item.value ? 'active' : ''}}"
+          bindtap="selectFilter"
+          data-type="transmission"
+          data-value="{{item.value}}"
+        >
+          {{item.label}}
+        </view>
       </view>
     </view>
-  </view>
 
-  <view class="filter-section">
-    <view class="section-title">座位数</view>
-    <view class="filter-options">
-      <view 
-        wx:for="{{seatOptions}}" 
-        wx:key="value"
-        class="option-item {{localFilters.seats === item.value ? 'active' : ''}}"
-        bindtap="selectFilter"
-        data-type="seats"
-        data-value="{{item.value}}"
-      >
-        {{item.label}}
+    <view class="filter-section">
+      <view class="section-title">座位数</view>
+      <view class="filter-options">
+        <view 
+          wx:for="{{seatOptions}}" 
+          wx:key="value"
+          class="option-item {{localFilters.seats === item.value ? 'active' : ''}}"
+          bindtap="selectFilter"
+          data-type="seats"
+          data-value="{{item.value}}"
+        >
+          {{item.label}}
+        </view>
       </view>
     </view>
-  </view>
 
-  <view class="filter-section">
-    <view class="section-title">价格范围</view>
-    <view class="filter-options">
-      <view 
-        wx:for="{{priceRanges}}" 
-        wx:key="value"
-        class="option-item {{localFilters.priceRange === item.value ? 'active' : ''}}"
-        bindtap="selectFilter"
-        data-type="priceRange"
-        data-value="{{item.value}}"
-      >
-        {{item.label}}
+    <view class="filter-section">
+      <view class="section-title">价格范围</view>
+      <view class="filter-options">
+        <view 
+          wx:for="{{priceRanges}}" 
+          wx:key="value"
+          class="option-item {{localFilters.priceRange === item.value ? 'active' : ''}}"
+          bindtap="selectFilter"
+          data-type="priceRange"
+          data-value="{{item.value}}"
+        >
+          {{item.label}}
+        </view>
       </view>
     </view>
-  </view>
 
-  <view class="filter-section">
-    <view class="section-title">服务商</view>
-    <view class="filter-options">
-      <view 
-        wx:for="{{providerTypes}}" 
-        wx:key="value"
-        class="option-item {{localFilters.provider === item.value ? 'active' : ''}}"
-        bindtap="selectFilter"
-        data-type="provider"
-        data-value="{{item.value}}"
-      >
-        {{item.label}}
+    <view class="filter-section">
+      <view class="section-title">服务商</view>
+      <view class="filter-options">
+        <view 
+          wx:for="{{providerTypes}}" 
+          wx:key="value"
+          class="option-item {{localFilters.provider === item.value ? 'active' : ''}}"
+          bindtap="selectFilter"
+          data-type="provider"
+          data-value="{{item.value}}"
+        >
+          {{item.label}}
+        </view>
       </view>
     </view>
-  </view>
+  </scroll-view>
 
   <view class="panel-footer">
     <button class="confirm-btn" bindtap="confirmFilter">确定</button>

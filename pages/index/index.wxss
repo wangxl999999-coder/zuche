@@ -103,7 +103,7 @@
 }
 
 .car-list {
-  padding: 20rpx;
+  padding: 20rpx 20rpx 120rpx;
 }
 
 .loading {

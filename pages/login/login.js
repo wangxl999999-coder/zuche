@@ -16,15 +16,12 @@ Page({
     });
   },
 
-  async onGetUserProfile(e) {
-    try {
-      const res = await getUserProfile();
+  onGetUserProfile(e) {
+    if (e.detail.userInfo) {
       this.setData({
-        userInfo: res.userInfo,
+        userInfo: e.detail.userInfo,
         hasUserInfo: true
       });
-    } catch (err) {
-      console.error('获取用户信息失败', err);
     }
   },
 

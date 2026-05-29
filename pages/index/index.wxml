@@ -1,3 +1,25 @@
+<wxs module="trans">
+var fuelTypeMap = {
+  gasoline: '汽油',
+  diesel: '柴油',
+  electric: '纯电',
+  hybrid: '混动'
+};
+var transmissionMap = {
+  auto: '自动',
+  manual: '手动'
+};
+function getFuelType(key) {
+  return fuelTypeMap[key] || key;
+}
+function getTransmission(key) {
+  return transmissionMap[key] || key;
+}
+module.exports = {
+  getFuelType: getFuelType,
+  getTransmission: getTransmission
+};
+</wxs>
 <view class="page">
   <view class="search-bar">
     <view class="search-input" bindtap="goSearch">
@@ -67,7 +89,7 @@
     <image class="car-image" src="{{selectedCar.image}}" mode="aspectFill"></image>
     <view class="car-info">
       <view class="car-name">{{selectedCar.name}}</view>
-      <view class="car-specs">{{selectedCar.transmission}} · {{selectedCar.seats}}座 · {{selectedCar.fuelType}}</view>
+      <view class="car-specs">{{trans.getTransmission(selectedCar.transmission)}} · {{selectedCar.seats}}座 · {{trans.getFuelType(selectedCar.fuelType)}}</view>
       <view class="car-price">
         <text class="price">{{selectedCar.price}}</text>
         <text class="unit">/天</text>

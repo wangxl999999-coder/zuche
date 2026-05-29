@@ -1,3 +1,25 @@
+<wxs module="trans">
+var fuelTypeMap = {
+  gasoline: '汽油',
+  diesel: '柴油',
+  electric: '纯电',
+  hybrid: '混动'
+};
+var transmissionMap = {
+  auto: '自动',
+  manual: '手动'
+};
+function getFuelType(key) {
+  return fuelTypeMap[key] || key;
+}
+function getTransmission(key) {
+  return transmissionMap[key] || key;
+}
+module.exports = {
+  getFuelType: getFuelType,
+  getTransmission: getTransmission
+};
+</wxs>
 <view class="car-card" bindtap="goDetail">
   <view class="car-image">
     <image src="{{car.image}}" mode="aspectFill"></image>
@@ -13,11 +35,11 @@
   <view class="car-info">
     <view class="car-name">{{car.name}}</view>
     <view class="car-specs">
-      <text>{{car.transmission}}</text>
+      <text>{{trans.getTransmission(car.transmission)}}</text>
       <text class="dot">·</text>
       <text>{{car.seats}}座</text>
       <text class="dot">·</text>
-      <text>{{car.fuelType}}</text>
+      <text>{{trans.getFuelType(car.fuelType)}}</text>
     </view>
     <view class="car-features">
       <text class="feature" wx:for="{{car.features}}" wx:key="index">{{item}}</text>
